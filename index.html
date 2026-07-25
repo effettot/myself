@@ -1,407 +1,274 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EFFETTOT — Portfolio</title>
-<meta name="description" content="EFFETTOT — Portfolio">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>Effettot — Portfolio</title>
+<meta name="description" content="Effettot — Portfolio">
 
 <style>
-  :root{
-    --bg: #10231d;
-    --bg-alt: #0c1c17;
-    --ivory: #f3efe4;
-    --ivory-dim: #cfc9b8;
-    --gold: #e2b04a;
-    --gold-dim: #a9843c;
-    --line: rgba(243,239,228,0.14);
-    --radius: 2px;
-    --serif: "Fraunces", serif;
-    --sans: "Inter", sans-serif;
-    --mono: "JetBrains Mono", monospace;
+  * {
+    box-sizing: border-box;
   }
 
-  *{ box-sizing: border-box; }
-  html{ scroll-behavior: smooth; }
-
-  body{
-    margin:0;
-    background: var(--bg);
-    color: var(--ivory);
-    font-family: var(--sans);
+  body {
+    margin: 0;
+    background-color: #1b1b1b;
+    color: #eaeaea;
+    font-family: Arial, Helvetica, sans-serif;
     line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
   }
 
-  a{ color: inherit; }
-
-  ::selection{ background: var(--gold); color: var(--bg); }
-
-  a:focus-visible, button:focus-visible{
-    outline: 2px solid var(--gold);
-    outline-offset: 3px;
+  a {
+    color: #4da3ff;
   }
 
-  .wrap{
-    max-width: 1080px;
+  .container {
+    max-width: 800px;
     margin: 0 auto;
-    padding: 0 32px;
+    padding: 20px;
   }
 
-  header{
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    background: rgba(16,35,29,0.86);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid var(--line);
+  header {
+    background-color: #111;
+    border-bottom: 2px solid #333;
+    padding: 15px 0;
   }
-  nav.wrap{
-    display:flex;
-    align-items:center;
+
+  header .container {
+    display: flex;
     justify-content: space-between;
-    height: 68px;
-  }
-  .brand{
-    font-family: var(--mono);
-    font-size: 14px;
-    letter-spacing: 0.06em;
-    text-decoration:none;
-    color: var(--ivory);
-  }
-  .brand span{ color: var(--gold); }
-  .nav-links{
-    display:flex;
-    gap: 28px;
-    list-style:none;
-    margin:0; padding:0;
-  }
-  .nav-links a{
-    text-decoration:none;
-    font-size: 14px;
-    color: var(--ivory-dim);
-    font-family: var(--mono);
-    letter-spacing: 0.03em;
-    transition: color .2s ease;
-  }
-  .nav-links a:hover{ color: var(--gold); }
-
-  /* ---------- HERO ---------- */
-  .hero{
-    padding: 120px 0 90px;
-    border-bottom: 1px solid var(--line);
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::before{
-    content:"";
-    position:absolute;
-    right: -120px; top: -120px;
-    width: 420px; height: 420px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(226,176,74,0.14), transparent 70%);
-    pointer-events:none;
-  }
-  .eyebrow{
-    font-family: var(--mono);
-    font-size: 13px;
-    color: var(--gold);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    display:flex;
-    align-items:center;
-    gap: 10px;
-    margin-bottom: 22px;
-  }
-  .eyebrow::before{
-    content:"";
-    width: 8px; height: 8px;
-    background: var(--gold);
-    display:inline-block;
-    animation: blink 1.6s ease-in-out infinite;
-  }
-  @keyframes blink{ 50%{ opacity: .25; } }
-
-  h1{
-    font-family: var(--serif);
-    font-weight: 600;
-    font-size: clamp(44px, 7vw, 84px);
-    line-height: 1.02;
-    margin: 0 0 24px;
-    max-width: 15ch;
-  }
-  h1 em{
-    font-style: italic;
-    color: var(--gold);
-  }
-  .hero-sub{
-    font-size: 19px;
-    color: var(--ivory-dim);
-    max-width: 52ch;
-    margin: 0 0 36px;
-  }
-  .btn-row{ display:flex; gap:16px; flex-wrap:wrap; }
-  .btn{
-    display:inline-flex;
-    align-items:center;
-    gap: 8px;
-    padding: 13px 26px;
-    border-radius: var(--radius);
-    text-decoration:none;
-    font-family: var(--mono);
-    font-size: 14px;
-    letter-spacing: 0.02em;
-    border: 1px solid var(--line);
-    transition: all .2s ease;
-  }
-  .btn-solid{
-    background: var(--gold);
-    color: var(--bg);
-    border-color: var(--gold);
-    font-weight: 600;
-  }
-  .btn-solid:hover{ background: var(--ivory); border-color: var(--ivory); }
-  .btn-ghost:hover{ border-color: var(--gold); color: var(--gold); }
-
-  section{ padding: 90px 0; border-bottom: 1px solid var(--line); }
-  .section-head{
-    display:flex;
-    align-items: baseline;
-    justify-content: space-between;
-    margin-bottom: 48px;
-    gap: 20px;
+    align-items: center;
     flex-wrap: wrap;
   }
-  .section-num{
-    font-family: var(--mono);
-    color: var(--gold-dim);
-    font-size: 13px;
-  }
-  h2{
-    font-family: var(--serif);
-    font-size: clamp(30px, 4vw, 42px);
-    font-weight: 600;
-    margin: 6px 0 0;
+
+  .brand {
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #fff;
   }
 
-  .about-grid{
-    display:grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: 64px;
-  }
-  .avatar{
-    width: 140px; height: 140px;
-    border-radius: 50%;
-    background: linear-gradient(160deg, var(--gold), #7c5a1e);
-    display:flex; align-items:center; justify-content:center;
-    font-family: var(--serif);
-    font-size: 52px;
-    font-weight: 700;
-    color: var(--bg);
-    margin-bottom: 24px;
-  }
-  .about-text p{ color: var(--ivory-dim); font-size: 16px; margin: 0 0 16px; }
-  .skills{
-    display:flex;
-    flex-wrap:wrap;
-    gap: 10px;
-    margin-top: 28px;
-    padding: 0; list-style:none;
-  }
-  .skills li{
-    font-family: var(--mono);
-    font-size: 13px;
-    padding: 6px 14px;
-    border: 1px solid var(--line);
-    color: var(--ivory-dim);
-  }
-
-  /* ---------- PROGETTI ---------- */
-  .projects{
-    display:grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-  }
-  .project-card{
-    border: 1px solid var(--line);
-    padding: 32px;
-    position: relative;
-    text-decoration:none;
-    color: var(--ivory);
-    background: var(--bg-alt);
-    display:flex;
-    flex-direction: column;
-    min-height: 220px;
-    transition: transform .25s ease, border-color .25s ease;
-  }
-  .project-card:hover{
-    transform: translateY(-4px);
-    border-color: var(--gold-dim);
-  }
-  .project-tag{
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--gold);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: 14px;
-  }
-  .project-card h3{
-    font-family: var(--serif);
-    font-size: 24px;
-    margin: 0 0 12px;
-  }
-  .project-card p{
-    color: var(--ivory-dim);
-    font-size: 14.5px;
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
     margin: 0;
-    flex-grow: 1;
+    padding: 0;
   }
-  .project-link{
-    margin-top: 20px;
-    font-family: var(--mono);
-    font-size: 13px;
-    display:flex;
-    align-items:center;
-    gap: 6px;
-    color: var(--ivory-dim);
-  }
-  .project-card:hover .project-link{ color: var(--gold); }
-  .project-link .arrow{ transition: transform .2s ease; }
-  .project-card:hover .arrow{ transform: translateX(4px); }
 
-  /* ---------- CONTATTI ---------- */
-  .contact{ border-bottom: none; text-align:center; }
-  .contact h2{ margin-bottom: 18px; }
-  .contact p{ color: var(--ivory-dim); max-width: 46ch; margin: 0 auto 36px; }
-  .contact-links{
-    display:flex; justify-content:center; gap: 28px; flex-wrap: wrap;
+  nav a {
+    text-decoration: none;
+    color: #ccc;
   }
-  .contact-links a{
-    font-family: var(--mono);
+
+  nav a:hover {
+    text-decoration: underline;
+  }
+
+  .hero {
+    padding: 40px 0;
+    text-align: center;
+    border-bottom: 2px solid #333;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
+
+  .hero p {
+    color: #bbb;
+    max-width: 500px;
+    margin: 0 auto 20px;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 10px 18px;
+    background-color: #4da3ff;
+    color: #111;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 4px;
+    margin: 5px;
+  }
+
+  .btn.secondary {
+    background-color: transparent;
+    color: #eaeaea;
+    border: 1px solid #555;
+  }
+
+  section {
+    padding: 30px 0;
+    border-bottom: 2px solid #333;
+  }
+
+  h2 {
+    border-bottom: 2px solid #4da3ff;
+    display: inline-block;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+  }
+
+  .skills {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0;
+  }
+
+  .skills li {
+    background-color: #262626;
+    border: 1px solid #444;
+    padding: 5px 10px;
     font-size: 14px;
-    text-decoration:none;
-    color: var(--ivory-dim);
-    border-bottom: 1px solid transparent;
-    padding-bottom: 3px;
-    transition: color .2s ease, border-color .2s ease;
   }
-  .contact-links a:hover{ color: var(--gold); border-color: var(--gold); }
 
-  footer{
-    padding: 28px 0 50px;
-    text-align:center;
-    font-family: var(--mono);
+  .projects {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .project-card {
+    display: block;
+    background-color: #222;
+    border: 1px solid #333;
+    padding: 15px;
+    text-decoration: none;
+    color: #eaeaea;
+  }
+
+  .project-card:hover {
+    border-color: #4da3ff;
+  }
+
+  .project-card .tag {
     font-size: 12px;
-    color: var(--ivory-dim);
-    opacity: .6;
+    color: #4da3ff;
+    text-transform: uppercase;
+    font-weight: bold;
   }
 
-  @media (max-width: 760px){
-    .about-grid{ grid-template-columns: 1fr; gap: 32px; }
-    .projects{ grid-template-columns: 1fr; }
-    .nav-links{ display:none; }
-    .hero{ padding: 90px 0 60px; }
+  .project-card h3 {
+    margin: 8px 0;
+  }
+
+  .project-card p {
+    margin: 0;
+    color: #bbb;
+    font-size: 14px;
+  }
+
+  .contact-links {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+
+  footer {
+    text-align: center;
+    padding: 20px 0;
+    color: #888;
+    font-size: 13px;
+  }
+
+  @media (min-width: 600px) {
+    .projects {
+      grid-template-columns: 1fr 1fr;
+    }
   }
 </style>
 </head>
 <body>
 
 <header>
-  <nav class="wrap">
-    <a href="#" class="brand">EFFETTOT</a>
-    <ul class="nav-links">
-      <li><a href="#about">Who i am</a></li>
-      <li><a href="#progetti">My projects</a></li>
-      <li><a href="#contatti">Contacts</a></li>
-    </ul>
-  </nav>
+  <div class="container">
+    <a href="#" class="brand">Effettot</a>
+    <nav>
+      <ul>
+        <li><a href="#about">Who I am</a></li>
+        <li><a href="#progetti">My projects</a></li>
+        <li><a href="#contatti">Contacts</a></li>
+      </ul>
+    </nav>
+  </div>
 </header>
 
 <section class="hero">
-  <div class="wrap">
-    <h1>Hello, i'm <em>Effettot</em>.<br>I rebuild software that people thought it was abandoned.</h1>
-    <p class="hero-sub">
-      I'm a full stack developer with a passion for making abandoned things available again.
-      Here you'll find my journey and a selection of projects I've worked on.
+  <div class="container">
+    <h1>Hi, I'm Effettot</h1>
+    <p>
+      I'm a full stack developer with a passion for making abandoned
+      software available again. Here's a bit about me and some of the
+      projects I've worked on.
     </p>
-    <div class="btn-row">
-      <a href="#progetti" class="btn btn-solid">View Projects</a>
-      <a href="#contatti" class="btn btn-ghost">Contact Me</a>
-    </div>
+    <a href="#progetti" class="btn">View Projects</a>
+    <a href="#contatti" class="btn secondary">Contact Me</a>
   </div>
 </section>
 
 <section id="about">
-  <div class="wrap">
-    <div class="section-head">
-      <div>
-        <h2>Who I am</h2>
-      </div>
-    </div>
-    <div class="about-grid">
-      <div>
-        <ul class="skills">
-          <li>HTML / CSS</li>
-          <li>Java</li>
-          <li>React</li>
-          <li>Node.js</li>
-          <li>Kotlin</li>
-        </ul>
-      </div>
-      <div class="about-text">
-        <p>
-Hi, i'm Effettot, a full stack developer with a passion for making abandoned software available again. I enjoy working on projects that challenge me and allow me to learn new things.  
-        </p>
-        <p>
-          I have experience in web development, mobile app development, and backend systems. I love to explore new technologies and find innovative solutions to problems.
-        </p>
-        <p>
-          I'm always eager to learn new skills and take on challenging projects that push my boundaries.
-        </p>
-      </div>
-    </div>
+  <div class="container">
+    <h2>Who I am</h2>
+    <p>
+      Hi, I'm Effettot, a full stack developer with a passion for making
+      abandoned software available again. I enjoy working on projects that
+      challenge me and allow me to learn new things.
+    </p>
+    <p>
+      I have experience in web development, mobile app development, and
+      backend systems. I love to explore new technologies and find
+      innovative solutions to problems.
+    </p>
+    <p>
+      I'm always eager to learn new skills and take on challenging projects
+      that push my boundaries.
+    </p>
+
+    <ul class="skills">
+      <li>HTML / CSS</li>
+      <li>Java</li>
+      <li>React</li>
+      <li>Node.js</li>
+      <li>Kotlin</li>
+    </ul>
   </div>
 </section>
+
 <section id="progetti">
-  <div class="wrap">
-    <div class="section-head">
-      <div>
-        <h2>Projects</h2>
-      </div>
-    </div>
+  <div class="container">
+    <h2>Projects</h2>
     <div class="projects">
 
       <a href="https://stardance.hackclub.com/projects/39877" class="project-card" target="_blank" rel="noopener">
-        <div class="project-tag">Website</div>
+        <div class="tag">Website</div>
         <h3>This portfolio</h3>
-        <p>A simple portfolio website built with HTML, CSS, and JavaScript. Nothing fancy or overcomplicated just a clean and modern design.</p>
-        <div class="project-link">See Project <span class="arrow">→</span></div>
+        <p>A simple portfolio website built with HTML, CSS, and JavaScript. Nothing fancy or overcomplicated, just a clean design.</p>
       </a>
 
       <a href="https://stardance.hackclub.com/projects/34181" class="project-card" target="_blank" rel="noopener">
-        <div class="project-tag">Game</div>
+        <div class="tag">Game</div>
         <h3>Decimation MOD</h3>
-        <p>A modified version of the popular game mod MC Decimation. I'm making it available and working again for everyone. For free.</p>
-        <div class="project-link">See Project <span class="arrow">→</span></div>
+        <p>A modified version of the popular game mod MC Decimation. I'm making it available and working again for everyone, for free.</p>
       </a>
 
       <a href="https://stardance.hackclub.com/projects/8871" class="project-card" target="_blank" rel="noopener">
-        <div class="project-tag">App</div>
+        <div class="tag">App</div>
         <h3>One ID</h3>
-        <p>A simple tool for Sharing safely identities, sensitive data and more with others.</p>
-        <div class="project-link">See Project <span class="arrow">→</span></div>
+        <p>A simple tool for sharing identities, sensitive data and more with others, safely.</p>
       </a>
 
     </div>
   </div>
 </section>
 
-<section id="contatti" class="contact">
-  <div class="wrap">
+<section id="contatti">
+  <div class="container">
+    <h2>Contact</h2>
     <p>Use one of the links below to get in touch:</p>
     <div class="contact-links">
       <a href="https://github.com/effettot" target="_blank" rel="noopener">GitHub</a>
@@ -412,30 +279,10 @@ Hi, i'm Effettot, a full stack developer with a passion for making abandoned sof
 </section>
 
 <footer>
-
-  © <span id="year"></span> Effettot — Made with HTML, CSS e JS.
+  <div class="container">
+    <script>document.write(new Date().getFullYear());</script> Effettot — Made with HTML, CSS and JS.
+  </div>
 </footer>
-
-<script>
-  document.getElementById('year').textContent = new Date().getFullYear();
-
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-links a');
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting){
-        navLinks.forEach(link => {
-          link.style.color = link.getAttribute('href') === '#' + entry.target.id
-            ? 'var(--gold)'
-            : '';
-        });
-      }
-    });
-  }, { threshold: 0.5 });
-
-  sections.forEach(sec => observer.observe(sec));
-</script>
 
 </body>
 </html>
